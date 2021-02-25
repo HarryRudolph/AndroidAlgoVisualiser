@@ -1,0 +1,22 @@
+* AlgoVisualiser
+
+** Descriptions
+
+*** TODO Put values in params
+*** TODO Write Descriptions
+
+*** TODO Link Viewcode to somewhere
+This will likely be just a copy of the code from somewhere?
+
+** Custom View
+*** TODO Rename to something simpler
+
+
+** Misc
+*** TODO Refactor color names
+  
+** Nice things to do
+
+*** TODO Random Button
+
+*** TODO Think about custom view size as it relates to the phone screen. I.e. relative sizes/locations
