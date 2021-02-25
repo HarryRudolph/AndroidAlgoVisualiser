@@ -47,7 +47,7 @@ public class GraphView extends View {
 
     private void init(@Nullable AttributeSet set){
         graphColor =  new Paint(Paint.ANTI_ALIAS_FLAG); //Ensure anti-aliasing on
-        graphColor.setColor(Color.rgb(139,195,74));
+        graphColor.setColor(Color.rgb(71,155,233));
 
         textColor = new Paint(Paint.ANTI_ALIAS_FLAG);
         textColor.setColor(Color.WHITE);

@@ -39,6 +39,8 @@ public class InfoActivity extends AppCompatActivity {
                 startAlgoButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        intent.putExtra("startPos", 0); //@Hardcoded. Change this
+                        intent.putExtra("endPos", 25);
                         startActivity(intent);
                     }
                 });

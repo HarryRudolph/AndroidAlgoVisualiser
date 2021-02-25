@@ -10,13 +10,18 @@ This will likely be just a copy of the code from somewhere?
 
 ** Custom View
 *** TODO Rename to something simpler
-
+** BFS
+*** TODO change hardcoded params
 
 ** Misc
 *** TODO Refactor color names
-  
+*** TODO Probably don't need Node.java? 
+
+
 ** Nice things to do
 
 *** TODO Random Button
 
 *** TODO Think about custom view size as it relates to the phone screen. I.e. relative sizes/locations
+
+*** TODO maybe a better way than adjacency matrix? 
