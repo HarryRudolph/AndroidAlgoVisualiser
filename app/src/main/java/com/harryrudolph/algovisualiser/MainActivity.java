@@ -16,18 +16,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.mainBFSButton:
-                System.out.println("button1");
                 intent.putExtra("Algo", "BFS");
                 startActivity(intent);
                 break;
             case R.id.mainDFSButton:
-                System.out.println("button2");
                 intent.putExtra("Algo", "DFS");
                 startActivity(intent);
 
                 break;
             case R.id.mainNQUEENSButton:
-                System.out.println("button3");
                 intent.putExtra("Algo", "N-QUEENS");
                 startActivity(intent);
 
