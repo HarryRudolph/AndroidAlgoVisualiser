@@ -14,6 +14,10 @@ public class Graph {
         matrix[end][start] = 1;
     }
 
+    public int[][] getMatrix(){
+        return matrix;
+    }
+
     public void makeDummyGraph(){
         addEdge(0, 1);
         addEdge(1, 2);
@@ -40,5 +44,7 @@ public class Graph {
         addEdge(21, 22);
 
     }
+
+
 
 }

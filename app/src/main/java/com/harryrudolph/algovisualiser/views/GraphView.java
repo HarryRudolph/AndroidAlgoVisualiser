@@ -11,14 +11,15 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.harryrudolph.algovisualiser.R;
-
 public class GraphView extends View {
 
     private static final int CIRCLESIZE = 75;
-    private Paint graphColor;
-    private Paint textColor;
+    private Paint graphPaint;
+    private Paint textPaint;
+    private Paint edgePaint;
 
+    private float[] horizontalEdges;
+    private float[] verticalEdges;
 
     public GraphView(Context context) {
         super(context);
@@ -46,18 +47,32 @@ public class GraphView extends View {
     }
 
     private void init(@Nullable AttributeSet set){
-        graphColor =  new Paint(Paint.ANTI_ALIAS_FLAG); //Ensure anti-aliasing on
-        graphColor.setColor(Color.rgb(71,155,233));
+        graphPaint =  new Paint(Paint.ANTI_ALIAS_FLAG); //Ensure anti-aliasing on
+        graphPaint.setColor(Color.rgb(71,155,233));
 
-        textColor = new Paint(Paint.ANTI_ALIAS_FLAG);
-        textColor.setColor(Color.WHITE);
-        textColor.setTextAlign(Paint.Align.CENTER);
-        textColor.setTextSize(50);
+        textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        textPaint.setColor(Color.WHITE);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTextSize(50);
+
+        edgePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        edgePaint.setColor(Color.BLACK);
+        edgePaint.setStrokeWidth(10);
     }
 
     public void swapColor() {
-        graphColor.setColor(Color.RED);
+        graphPaint.setColor(Color.RED);
         postInvalidate(); //update the onDraw
+    }
+
+    public void generateEdges(int[][] matrix){
+        for (int y = 0; y < matrix.length; y ++) {
+            for (int x = 0; x < matrix.length; x++) {
+                if (matrix[y][x] == 1){
+
+                }
+            }
+        }
     }
 
     @Override
@@ -69,13 +84,23 @@ public class GraphView extends View {
 
         Integer counter = 0;
 
+        //Drawing nodes
         for (int y = 0; y < 5; y++){
             for (int x = 0; x < 5; x++) {
-                canvas.drawCircle(cOffsetX + (200*x), cOffsetY + (200*y), CIRCLESIZE, graphColor);
-                canvas.drawText(counter.toString(), cOffsetX + (200*x), tOffsetY + (200*y), textColor);
+                canvas.drawCircle(cOffsetX + (200*x), cOffsetY + (200*y), CIRCLESIZE, graphPaint);
+                canvas.drawText(counter.toString(), cOffsetX + (200*x), tOffsetY + (200*y), textPaint);
                 counter++;
             }
         }
-        //canvas.drawColor(Color.RED); //Background Colour
+
+        canvas.drawLine(cOffsetX+CIRCLESIZE, cOffsetY,cOffsetX+CIRCLESIZE + (200-(CIRCLESIZE*2)), cOffsetY, edgePaint);
+        //Drawing Edges
+        //draw horizontal edges
+        //canvas.drawLines(horizontalEdges, edgeColor);
+        //draw vertical edges
+        //canvas.drawLines(verticalEdges, edgeColor);
+
+
+
     }
 }
