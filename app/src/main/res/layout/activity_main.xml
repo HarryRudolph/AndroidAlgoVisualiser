@@ -25,11 +25,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Button"
+        android:text="@string/main_button_label_2"
         app:layout_constraintBottom_toTopOf="@+id/mainNQUEENSButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/main_button_label_2" />
+        />
 
     <Button
         android:id="@+id/mainNQUEENSButton"
