@@ -47,10 +47,12 @@ public class BFSActivity extends AppCompatActivity {
         mGraphView.generateEdges(g.getMatrix());
 
         q.add(startPos);
+        mGraphView.setColor(startPos, 2);
+        mGraphView.setColor(24, 2);
+
 
         Button nextStepButton = findViewById(R.id.nextStepButton);
         nextStepButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 if (!nextStep){
@@ -65,7 +67,6 @@ public class BFSActivity extends AppCompatActivity {
 
     private void BFS(){
         System.out.println("BFS was called");
-
         if (nextStep && !q.isEmpty() && !finished) {
             int current = q.get(q.size() - 1); //-1 as arraylist is 0 indexed
             q.remove(q.size() - 1);
@@ -81,7 +82,10 @@ public class BFSActivity extends AppCompatActivity {
                 for (int i = 0; i < graph.length; i++) { //adding all neighbours to queue
                     if (graph[current][i] == 1) {
                         //Have found a neighbour
+
+                        mGraphView.setColor(current, 1);
                         q.add(i);
+
                     }
                 }
 

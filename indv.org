@@ -13,7 +13,7 @@ This will likely be just a copy of the code from somewhere?
 ** BFS
 *** TODO change hardcoded params
 *** TODO Less efficient as adding all neighbours to queue. instead check if you have already visited before adding to queue?
-*** TODO test
+*** TODO change where I check if has been visited or not
 
 ** Misc
 *** TODO Refactor color names

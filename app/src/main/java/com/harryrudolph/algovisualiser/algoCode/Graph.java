@@ -28,6 +28,7 @@ public class Graph {
         addEdge(5, 10);
         addEdge(6, 11);
         addEdge(7, 8);
+        addEdge(8, 13);
         addEdge(10, 15);
         addEdge(11, 12);
         addEdge(13, 14);

@@ -28,7 +28,7 @@ public class GraphView extends View {
     private Paint edgePaint;
 
     private float[] allEdges;
-    private int[][] nodeColors = new int[5][5]; //stores color to paint nodes. 1 = red
+    private int[][] nodeColors = new int[5][5]; //stores color to paint nodes. 1 = red. 2 = green.
 
     public GraphView(Context context) {
         super(context);
@@ -135,6 +135,9 @@ public class GraphView extends View {
                 switch (nodeColors[y][x]) {
                     case 1:
                         nodePaint.setColor(Color.rgb(250,128,114));
+                        break;
+                    case 2:
+                        nodePaint.setColor(Color.rgb(50,205,50));
                         break;
                     default:
                         nodePaint.setColor(Color.rgb(71, 155, 233));
