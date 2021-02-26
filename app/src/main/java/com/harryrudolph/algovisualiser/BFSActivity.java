@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.harryrudolph.algovisualiser.algoCode.Graph;
 import com.harryrudolph.algovisualiser.views.GraphView;
@@ -16,6 +18,16 @@ public class BFSActivity extends AppCompatActivity {
     private GraphView mGraphView;
     private int nodes = 25;
 
+    private boolean nextStep = false;
+    private boolean finished = false;
+
+    private int startPos;
+    private int endPos;
+    private Graph g;
+    private int[][] graph;
+    private boolean[] visited = new boolean[nodes];
+    private ArrayList<Integer> q = new ArrayList<Integer>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,38 +36,50 @@ public class BFSActivity extends AppCompatActivity {
         setTitle("Breadth First Search");
 
         Intent recIntent = getIntent();
-        int startPos = recIntent.getIntExtra("startPos",0);
-        int endPos = recIntent.getIntExtra("endPos",24);
+        startPos = recIntent.getIntExtra("startPos",0);
+        endPos = recIntent.getIntExtra("endPos",24);
 
-        Graph g = new Graph();
+        g = new Graph();
         g.makeDummyGraph();
+        graph = g.getMatrix();
 
         mGraphView = findViewById(R.id.bfsGraphView);
         mGraphView.generateEdges(g.getMatrix());
 
+        q.add(startPos);
+
+        Button nextStepButton = findViewById(R.id.nextStepButton);
+        nextStepButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (!nextStep){
+                    nextStep = true;
+                    BFS();
+                }
+            }
+        });
+
+
     }
 
-    private void BFS(int start, int end, Graph g){
-        int[][] graph = g.getMatrix();
-        boolean[] visited = new boolean[nodes];
-        ArrayList<Integer> q = new ArrayList<Integer>();
+    private void BFS(){
+        System.out.println("BFS was called");
 
-        q.add(start);
-
-        while (!q.isEmpty()) {
+        if (nextStep && !q.isEmpty() && !finished) {
             int current = q.get(q.size() - 1); //-1 as arraylist is 0 indexed
             q.remove(q.size() - 1);
 
             //Check to see if have visited the current node
-            if (visited[current] == false){
+            if (visited[current] == false) {
 
                 //Check to see if have found end point
-                if (current == end) {
-                    break;
+                if (current == endPos) {
+                    finished = true;
                 }
 
-                for (int i = 0; i < graph.length; i++){ //adding all neighbours to queue
-                    if (graph[current][i] == 1){
+                for (int i = 0; i < graph.length; i++) { //adding all neighbours to queue
+                    if (graph[current][i] == 1) {
                         //Have found a neighbour
                         q.add(i);
                     }
@@ -63,6 +87,8 @@ public class BFSActivity extends AppCompatActivity {
 
                 visited[current] = true;
             }
+            nextStep = false;
         }
     }
+
 }
