@@ -11,15 +11,31 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.harryrudolph.algovisualiser.algoCode.Graph;
+
+import java.util.ArrayList;
+
 public class GraphView extends View {
 
-    private static final int CIRCLESIZE = 75;
+    private static final int CIRCLERADIUS = 75;
+    private static final int SPACING = 200;
+
+    private float cOffsetX = 140;
+    private float cOffsetY = 100;
+    private float tOffsetY = cOffsetY + 10;
+
     private Paint graphPaint;
     private Paint textPaint;
     private Paint edgePaint;
 
-    private float[] horizontalEdges;
-    private float[] verticalEdges;
+    private float[] allEdges;
+
+    //Can only draw 5*5 grid so nodes are hardcoded here
+    int[][] nodes = {{0, 1, 2, 3, 4},
+                    {5, 6, 7, 8, 9},
+                    {10, 11, 12, 13, 14},
+                    {15, 16, 17, 18, 19},
+                    {20, 21, 22, 23, 24}};
 
     public GraphView(Context context) {
         super(context);
@@ -66,39 +82,75 @@ public class GraphView extends View {
     }
 
     public void generateEdges(int[][] matrix){
-        for (int y = 0; y < matrix.length; y ++) {
-            for (int x = 0; x < matrix.length; x++) {
-                if (matrix[y][x] == 1){
+        float length = (SPACING) - (CIRCLERADIUS * 2);
+        ArrayList<Float> edgeAL = new ArrayList<Float>();
+        //horizontal edges have same y
+        //vertical edges have same x
+
+        //length is always the same.
+        // Starting pos increases by i*spacing + circle size
+
+        // i and j go through the adjacency matrix
+        for (int i = 0; i < matrix.length; i ++) {
+            for (int j = 0; j < matrix.length; j++) {
+                if (matrix[i][j] == 1){
+                    if(Math.abs(i-j) == 1){
+                        //Then we know it's a horizontal line.
+                        if (i < j) {
+                            //Only render one half of adjacency matrix
+                            float xPixel = cOffsetX + CIRCLERADIUS + ((i % 5) * SPACING);
+                            float yPixel = cOffsetY + ((j / 5) * SPACING);
+
+                            edgeAL.add(xPixel);
+                            edgeAL.add(yPixel);
+                            edgeAL.add(xPixel + length);
+                            edgeAL.add(yPixel);
+                        }
+                    } else{
+                        //Must be vertical due to restrictions of a set graph shape
+                        if (i > j) {
+                            //this time render the other half of adjacency matrix
+                            float xPixel = cOffsetX + ((i%5) * SPACING);
+                            float yPixel = cOffsetY + CIRCLERADIUS + ((j/5)* SPACING);
+
+                            edgeAL.add(xPixel);
+                            edgeAL.add(yPixel);
+                            edgeAL.add(xPixel);
+                            edgeAL.add(yPixel + length);
+                        }
+                    }
 
                 }
             }
         }
+
+        allEdges = new float[edgeAL.size()];
+        for (int i = 0; i < edgeAL.size(); i++){
+            allEdges[i] = edgeAL.get(i);
+        }
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float cOffsetX = 140;
-        float cOffsetY = 100;
 
-        float tOffsetY = cOffsetY + 10;
+        Graph g = new Graph();
+        g.makeDummyGraph();
+        generateEdges(g.getMatrix());
 
         Integer counter = 0;
 
         //Drawing nodes
         for (int y = 0; y < 5; y++){
             for (int x = 0; x < 5; x++) {
-                canvas.drawCircle(cOffsetX + (200*x), cOffsetY + (200*y), CIRCLESIZE, graphPaint);
-                canvas.drawText(counter.toString(), cOffsetX + (200*x), tOffsetY + (200*y), textPaint);
+                canvas.drawCircle(cOffsetX + (SPACING*x), cOffsetY + (SPACING*y), CIRCLERADIUS, graphPaint);
+                canvas.drawText(counter.toString(), cOffsetX + (SPACING*x), tOffsetY + (SPACING*y), textPaint);
                 counter++;
             }
         }
 
-        canvas.drawLine(cOffsetX+CIRCLESIZE, cOffsetY,cOffsetX+CIRCLESIZE + (200-(CIRCLESIZE*2)), cOffsetY, edgePaint);
-        //Drawing Edges
-        //draw horizontal edges
-        //canvas.drawLines(horizontalEdges, edgeColor);
-        //draw vertical edges
-        //canvas.drawLines(verticalEdges, edgeColor);
+        canvas.drawLines(allEdges, edgePaint);
+
 
 
 

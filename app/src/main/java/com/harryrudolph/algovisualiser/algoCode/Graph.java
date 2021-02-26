@@ -1,12 +1,10 @@
 package com.harryrudolph.algovisualiser.algoCode;
 
 public class Graph {
-    int nodes;
     int matrix[][];
 
-    public Graph(int nodes){
-        this.nodes = nodes;
-        matrix = new int[nodes][nodes];
+    public Graph(){
+        matrix = new int[25][25];
     }
 
     public void addEdge(int start, int end){

@@ -12,12 +12,14 @@ This will likely be just a copy of the code from somewhere?
 *** TODO Rename to something simpler
 ** BFS
 *** TODO change hardcoded params
+*** TODO Less efficient as adding all neighbours to queue. instead check if you have already visited before adding to queue?
+*** TODO test
 
 ** Misc
 *** TODO Refactor color names
-*** TODO Probably don't need Node.java? 
-
-
+*** TODO Probably don't need Node.java?
+*** Nodes are 25. Probably pull this number from somewhere else.
+*** TODO Maybe delete nodes array from graphview.java
 ** Nice things to do
 
 *** TODO Random Button

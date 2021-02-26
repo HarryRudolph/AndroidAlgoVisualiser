@@ -31,7 +31,7 @@ public class BFSActivity extends AppCompatActivity {
     }
 
     private void BFS(int start, int end){
-        Graph g = new Graph(nodes);
+        Graph g = new Graph();
         g.makeDummyGraph();
 
         int[][] graph = g.getMatrix();
