@@ -34,14 +34,14 @@ public class InfoActivity extends AppCompatActivity {
                 param.setText(R.string.BFSParam);
                 startAlgoButton.setText(R.string.BFSAction);
 
-                Intent intent = new Intent(InfoActivity.this, BFSActivity.class);
+                Intent bfsIntent = new Intent(InfoActivity.this, BFSActivity.class);
 
                 startAlgoButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        intent.putExtra("startPos", 0); //@Hardcoded. Change this
-                        intent.putExtra("endPos",24);
-                        startActivity(intent);
+                        bfsIntent.putExtra("startPos", 0); //@Hardcoded. Change this
+                        bfsIntent.putExtra("endPos",24);
+                        startActivity(bfsIntent);
                     }
                 });
                 break;
@@ -50,8 +50,16 @@ public class InfoActivity extends AppCompatActivity {
                 algoDescription.setText(R.string.DFSDescription);
                 param.setText(R.string.DFSParam);
                 startAlgoButton.setText(R.string.DFSAction);
+                Intent dfsIntent = new Intent(InfoActivity.this, DFSActivity.class);
 
-                //Intent intent = new Intent(InfoActivity.this, To the next place)
+                startAlgoButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dfsIntent.putExtra("startPos", 0); //@Hardcoded. Change this
+                        dfsIntent.putExtra("endPos",24);
+                        startActivity(dfsIntent);
+                    }
+                });
                 break;
             case "NQEENS":
                 setTitle(R.string.NQUEENSTitle);
