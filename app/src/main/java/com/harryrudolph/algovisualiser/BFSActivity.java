@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class BFSActivity extends AppCompatActivity {
 
     private int connections;
-    private GraphView mCustomView;
+    private GraphView mGraphView;
     private int nodes = 25;
 
     @Override
@@ -27,15 +27,16 @@ public class BFSActivity extends AppCompatActivity {
         int startPos = recIntent.getIntExtra("startPos",0);
         int endPos = recIntent.getIntExtra("endPos",24);
 
-
-    }
-
-    private void BFS(int start, int end){
         Graph g = new Graph();
         g.makeDummyGraph();
 
-        int[][] graph = g.getMatrix();
+        mGraphView = findViewById(R.id.bfsGraphView);
+        mGraphView.generateEdges(g.getMatrix());
 
+    }
+
+    private void BFS(int start, int end, Graph g){
+        int[][] graph = g.getMatrix();
         boolean[] visited = new boolean[nodes];
         ArrayList<Integer> q = new ArrayList<Integer>();
 

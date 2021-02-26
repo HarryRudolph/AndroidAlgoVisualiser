@@ -11,31 +11,24 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.harryrudolph.algovisualiser.algoCode.Graph;
-
 import java.util.ArrayList;
 
 public class GraphView extends View {
 
     private static final int CIRCLERADIUS = 75;
     private static final int SPACING = 200;
+    private static final int NODECOUNT = 25;
 
     private float cOffsetX = 140;
     private float cOffsetY = 100;
     private float tOffsetY = cOffsetY + 10;
 
-    private Paint graphPaint;
+    private Paint nodePaint;
     private Paint textPaint;
     private Paint edgePaint;
 
     private float[] allEdges;
-
-    //Can only draw 5*5 grid so nodes are hardcoded here
-    int[][] nodes = {{0, 1, 2, 3, 4},
-                    {5, 6, 7, 8, 9},
-                    {10, 11, 12, 13, 14},
-                    {15, 16, 17, 18, 19},
-                    {20, 21, 22, 23, 24}};
+    private int[][] nodeColors = new int[5][5]; //stores color to paint nodes. 1 = red
 
     public GraphView(Context context) {
         super(context);
@@ -63,8 +56,8 @@ public class GraphView extends View {
     }
 
     private void init(@Nullable AttributeSet set){
-        graphPaint =  new Paint(Paint.ANTI_ALIAS_FLAG); //Ensure anti-aliasing on
-        graphPaint.setColor(Color.rgb(71,155,233));
+        nodePaint =  new Paint(Paint.ANTI_ALIAS_FLAG); //Ensure anti-aliasing on
+        nodePaint.setColor(Color.rgb(71,155,233));
 
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(Color.WHITE);
@@ -76,8 +69,8 @@ public class GraphView extends View {
         edgePaint.setStrokeWidth(10);
     }
 
-    public void swapColor() {
-        graphPaint.setColor(Color.RED);
+    public void setColor(int node, int color) {
+        nodeColors[node/5][node%5] = color;
         postInvalidate(); //update the onDraw
     }
 
@@ -134,16 +127,20 @@ public class GraphView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        Graph g = new Graph();
-        g.makeDummyGraph();
-        generateEdges(g.getMatrix());
-
         Integer counter = 0;
 
         //Drawing nodes
         for (int y = 0; y < 5; y++){
             for (int x = 0; x < 5; x++) {
-                canvas.drawCircle(cOffsetX + (SPACING*x), cOffsetY + (SPACING*y), CIRCLERADIUS, graphPaint);
+                switch (nodeColors[y][x]) {
+                    case 1:
+                        nodePaint.setColor(Color.rgb(250,128,114));
+                        break;
+                    default:
+                        nodePaint.setColor(Color.rgb(71, 155, 233));
+                        break;
+                }
+                canvas.drawCircle(cOffsetX + (SPACING*x), cOffsetY + (SPACING*y), CIRCLERADIUS, nodePaint);
                 canvas.drawText(counter.toString(), cOffsetX + (SPACING*x), tOffsetY + (SPACING*y), textPaint);
                 counter++;
             }
