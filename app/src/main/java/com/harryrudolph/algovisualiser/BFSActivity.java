@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.harryrudolph.algovisualiser.algoCode.Graph;
 import com.harryrudolph.algovisualiser.views.GraphView;
@@ -55,9 +56,12 @@ public class BFSActivity extends AppCompatActivity {
         nextStepButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!nextStep){
+                if (!nextStep && !finished){
                     nextStep = true;
                     BFS();
+                }
+                if (finished){
+                    Toast.makeText(getApplicationContext(), "Finished", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -70,6 +74,7 @@ public class BFSActivity extends AppCompatActivity {
         if (nextStep && !q.isEmpty() && !finished) {
             int current = q.get(q.size() - 1); //-1 as arraylist is 0 indexed
             q.remove(q.size() - 1);
+            mGraphView.setColor(current, 1);
 
             //Check to see if have visited the current node
             if (visited[current] == false) {
@@ -83,7 +88,6 @@ public class BFSActivity extends AppCompatActivity {
                     if (graph[current][i] == 1) {
                         //Have found a neighbour
 
-                        mGraphView.setColor(current, 1);
                         q.add(i);
 
                     }

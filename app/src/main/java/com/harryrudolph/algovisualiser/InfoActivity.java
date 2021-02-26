@@ -40,7 +40,7 @@ public class InfoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         intent.putExtra("startPos", 0); //@Hardcoded. Change this
-                        intent.putExtra("endPos", 25);
+                        intent.putExtra("endPos",24);
                         startActivity(intent);
                     }
                 });
