@@ -11,8 +11,8 @@ public class BFS {
         q.add(start);
 
         while (!q.isEmpty()) {
-                int current = q.get(q.size() - 1); //-1 as arraylist is 0 indexed
-                q.remove(q.size() - 1);
+                int current = q.get(0); //-1 as arraylist is 0 indexed
+                q.remove(0);
 
                 //Check to see if have visited the current node
                 if (visited[current] == false) {

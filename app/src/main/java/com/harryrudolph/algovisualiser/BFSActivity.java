@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.harryrudolph.algovisualiser.algoCode.Graph;
@@ -14,10 +15,12 @@ import com.harryrudolph.algovisualiser.views.GraphView;
 import java.util.ArrayList;
 
 public class BFSActivity extends AppCompatActivity {
-
-    private int connections;
     private GraphView mGraphView;
     private int nodes = 25;
+
+    TextView queueDisplay;
+    private String queueInfo = "Queue \n";
+
 
     private boolean nextStep = false;
     private boolean finished = false;
@@ -44,12 +47,16 @@ public class BFSActivity extends AppCompatActivity {
         g.makeDummyGraph();
         graph = g.getMatrix();
 
+        queueDisplay = findViewById(R.id.queueDisplay);
+        queueDisplay.setText(queueInfo);
+
         mGraphView = findViewById(R.id.bfsGraphView);
         mGraphView.generateEdges(g.getMatrix());
 
         q.add(startPos);
         mGraphView.setColor(startPos, 2);
         mGraphView.setColor(24, 2);
+
 
 
         Button nextStepButton = findViewById(R.id.nextStepButton);
@@ -59,6 +66,8 @@ public class BFSActivity extends AppCompatActivity {
                 if (!nextStep && !finished){
                     nextStep = true;
                     BFS();
+                    updateQueueInfo();
+
                 }
                 if (finished){
                     Toast.makeText(getApplicationContext(), "Finished", Toast.LENGTH_SHORT).show();
@@ -70,33 +79,34 @@ public class BFSActivity extends AppCompatActivity {
     }
 
     private void BFS(){
-        System.out.println("BFS was called");
         if (nextStep && !q.isEmpty() && !finished) {
-            int current = q.get(q.size() - 1); //-1 as arraylist is 0 indexed
-            q.remove(q.size() - 1);
+            int current = q.get(0); //-1 as arraylist is 0 indexed
+            q.remove(0);
             mGraphView.setColor(current, 1);
 
-            //Check to see if have visited the current node
-            if (visited[current] == false) {
-
-                //Check to see if have found end point
-                if (current == endPos) {
-                    finished = true;
-                }
-
-                for (int i = 0; i < graph.length; i++) { //adding all neighbours to queue
-                    if (graph[current][i] == 1) {
-                        //Have found a neighbour
-
-                        q.add(i);
-
-                    }
-                }
-
-                visited[current] = true;
+            //Check to see if have found end point
+            if (current == endPos) {
+                finished = true;
             }
+
+            for (int i = 0; i < graph.length; i++) { //adding all neighbours to queue
+                if (graph[current][i] == 1 && visited[i] == false) {
+                    //Have found a neighbour that has not been visited.
+                    q.add(i);
+                }
+            }
+
+            visited[current] = true;
+
             nextStep = false;
         }
     }
+
+    private void updateQueueInfo(){
+        queueInfo = "Queue \n" + q.toString() + "\nNext to visit: " +  q.get(0).toString();
+
+        queueDisplay.setText(queueInfo);
+    }
+
 
 }
