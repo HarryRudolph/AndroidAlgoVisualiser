@@ -22,8 +22,11 @@ This is the same as bfs just take from end lol
 *** TODO Maybe delete nodes array from graphview.java
 ** Nice things to do
 
+*** TODO Add steps taken
 *** TODO Random Button
 
 *** TODO Think about custom view size as it relates to the phone screen. I.e. relative sizes/locations
 
-*** TODO maybe a better way than adjacency matrix? 
+*** TODO maybe a better way than adjacency matrix?
+
+*** Could have used linear interpolation to draw edges.

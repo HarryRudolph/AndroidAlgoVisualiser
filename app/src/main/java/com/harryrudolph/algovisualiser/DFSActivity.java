@@ -19,7 +19,7 @@ public class DFSActivity extends AppCompatActivity {
     private int nodes = 25;
 
     TextView stackDisplay;
-    private String stackInfo = "Stack \n";
+    private String stackInfo;
 
     private boolean nextStep = false;
     private boolean finished = false;
@@ -56,6 +56,7 @@ public class DFSActivity extends AppCompatActivity {
         stack.add(startPos);
         mGraphView.setColor(startPos, 2);
         mGraphView.setColor(24, 2);
+        updateStackInfo();
 
         Button nextStepButton = findViewById(R.id.nextStepButton);
         nextStepButton.setOnClickListener(new View.OnClickListener() {

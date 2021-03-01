@@ -21,7 +21,8 @@ public class InfoActivity extends AppCompatActivity {
 
         TextView algoDescription = findViewById(R.id.algoDescription);
         Button viewCodeButton = findViewById(R.id.viewCodeButton);
-        EditText param = findViewById(R.id.paramText);
+        EditText param1 = findViewById(R.id.paramText1);
+        EditText param2 = findViewById(R.id.paramText2);
         Button startAlgoButton = findViewById(R.id.startAlgoButton);
 
         Intent recIntent = getIntent();
@@ -30,8 +31,9 @@ public class InfoActivity extends AppCompatActivity {
         switch (type) {
             case "BFS":
                 setTitle(R.string.BFSTitle);
-                algoDescription.setText(R.string.BFSDescription);
-                param.setText(R.string.BFSParam);
+                algoDescription.setHint(R.string.BFSDescription);
+                param1.setHint(R.string.BFSParam1);
+                param2.setHint(R.string.BFSParam2);
                 startAlgoButton.setText(R.string.BFSAction);
 
                 Intent bfsIntent = new Intent(InfoActivity.this, BFSActivity.class);
@@ -39,8 +41,9 @@ public class InfoActivity extends AppCompatActivity {
                 startAlgoButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        bfsIntent.putExtra("startPos", 0); //@Hardcoded. Change this
-                        bfsIntent.putExtra("endPos",24);
+
+                        bfsIntent.putExtra("startPos", Integer.parseInt(param1.getText().toString())); // have to convert to string first
+                        bfsIntent.putExtra("endPos",Integer.parseInt(param2.getText().toString()));
                         startActivity(bfsIntent);
                     }
                 });
@@ -48,7 +51,8 @@ public class InfoActivity extends AppCompatActivity {
             case "DFS":
                 setTitle(R.string.DFSTitle);
                 algoDescription.setText(R.string.DFSDescription);
-                param.setText(R.string.DFSParam);
+                param1.setHint(R.string.DFSParam1);
+                param2.setHint(R.string.DFSParam2);
                 startAlgoButton.setText(R.string.DFSAction);
                 Intent dfsIntent = new Intent(InfoActivity.this, DFSActivity.class);
 
@@ -64,7 +68,8 @@ public class InfoActivity extends AppCompatActivity {
             case "NQEENS":
                 setTitle(R.string.NQUEENSTitle);
                 algoDescription.setText(R.string.NQUEENSDescription);
-                param.setText(R.string.NQUEENSParam);
+                param1.setHint(R.string.NQUEENSParam1);
+                param2.setHint(R.string.NQUEENSParam2);
                 startAlgoButton.setText(R.string.NQUEENSAction);
                 break;
         }

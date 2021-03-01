@@ -19,7 +19,7 @@ public class BFSActivity extends AppCompatActivity {
     private int nodes = 25;
 
     TextView queueDisplay;
-    private String queueInfo = "Queue \n";
+    private String queueInfo;
 
     private boolean nextStep = false;
     private boolean finished = false;
@@ -39,7 +39,7 @@ public class BFSActivity extends AppCompatActivity {
         setTitle("Breadth First Search");
 
         Intent recIntent = getIntent();
-        startPos = recIntent.getIntExtra("startPos",0);
+        startPos = recIntent.getIntExtra("startPos", 0);
         endPos = recIntent.getIntExtra("endPos",24);
 
         g = new Graph();
@@ -54,7 +54,9 @@ public class BFSActivity extends AppCompatActivity {
 
         q.add(startPos);
         mGraphView.setColor(startPos, 2);
-        mGraphView.setColor(24, 2);
+        mGraphView.setColor(endPos, 2);
+
+        updateQueueInfo();
 
         Button nextStepButton = findViewById(R.id.nextStepButton);
         nextStepButton.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +100,7 @@ public class BFSActivity extends AppCompatActivity {
         queueInfo = "Queue \n" + q.toString();
 
         if(!finished) {
-            queueInfo = queueInfo + "\nNext to visit: " +  q.get(q.size()-1).toString();
+            queueInfo = queueInfo + "\nNext to visit: " +  q.get(0).toString();
         }else {
             queueInfo = queueInfo + "\nFinished";
         }
