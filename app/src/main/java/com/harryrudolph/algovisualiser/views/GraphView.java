@@ -190,8 +190,6 @@ public class GraphView extends View {
                 counter++; //Increase the number
             }
         }
-
         canvas.drawLines(allEdges, edgePaint); //allEdges array is given to draw all edges.
-
     }
 }

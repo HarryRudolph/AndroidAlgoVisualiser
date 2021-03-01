@@ -20,6 +20,7 @@ This is the same as bfs just take from end lol
 *** TODO Probably don't need Node.java?
 *** Nodes are 25. Probably pull this number from somewhere else.
 *** TODO Maybe delete nodes array from graphview.java
+*** TODO GraphView finalise the offset values.
 ** Nice things to do
 
 *** TODO Add steps taken
