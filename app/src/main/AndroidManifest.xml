@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AlgoVisualiser">
-        <activity android:name=".DFSActivity"></activity>
+        <activity android:name=".QueensActivity"></activity>
+        <activity android:name=".DFSActivity" />
         <activity android:name=".BFSActivity" />
         <activity android:name=".InfoActivity" />
         <activity android:name=".MainActivity">

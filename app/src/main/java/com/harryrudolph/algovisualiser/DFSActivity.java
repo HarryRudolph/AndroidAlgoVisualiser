@@ -55,7 +55,7 @@ public class DFSActivity extends AppCompatActivity {
 
         stack.add(startPos);
         mGraphView.setColor(startPos, 2);
-        mGraphView.setColor(24, 2);
+        mGraphView.setColor(endPos, 2); //Does this cause a crash???
         updateStackInfo();
 
         Button nextStepButton = findViewById(R.id.nextStepButton);

@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.mainNQUEENSButton:
-                intent.putExtra("Algo", "N-QUEENS");
+                intent.putExtra("Algo", "NQUEENS");
                 startActivity(intent);
 
                 break;

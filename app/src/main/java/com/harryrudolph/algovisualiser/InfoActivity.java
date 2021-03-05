@@ -65,12 +65,21 @@ public class InfoActivity extends AppCompatActivity {
                     }
                 });
                 break;
-            case "NQEENS":
+            case "NQUEENS":
                 setTitle(R.string.NQUEENSTitle);
                 algoDescription.setText(R.string.NQUEENSDescription);
                 param1.setHint(R.string.NQUEENSParam1);
                 param2.setHint(R.string.NQUEENSParam2);
                 startAlgoButton.setText(R.string.NQUEENSAction);
+                Intent queensIntent = new Intent(InfoActivity.this, QueensActivity.class);
+                startAlgoButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        queensIntent.putExtra("BoardSize", 8); //@Hardcoded. Change this
+
+                        startActivity(queensIntent);
+                    }
+                });
                 break;
         }
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -12,9 +11,14 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import java.util.Arrays;
+
 public class QueensView extends View {
-    private final int OFFSETX = 140; //The x offset to start drawing
-    private final int OFFSETY = 100; //The y offset to start drawing
+    private final int BOARDOFFSETX = 140; //The x offset to start drawing
+    private final int BOARDOFFSETY = 100; //The y offset to start drawing
+
+    private final int QUEENOFFSETX = BOARDOFFSETX + 50;
+    private final int QUEENOFFSETY = BOARDOFFSETY + 90;
 
     private final int SPACING = 100;
     private final int LENGTH = 100;
@@ -22,9 +26,13 @@ public class QueensView extends View {
     private int dark = Color.rgb(184,139,74);
     private int light = Color.rgb(227,193,111);
 
-    private int boardSize = 7; // This is 0 indexed
+    private int boardSize; // This is 0 indexed
 
     Paint boardPaint;
+    Paint queenPaint;
+
+    int[] queenPos = {-1, -1, 1, -1, -1, -1, -1, -1, -1};//@Hardcoded
+
     /**
      * Constructor extending from superclass
      * @param context context for application
@@ -78,13 +86,18 @@ public class QueensView extends View {
      */
     private void init(@Nullable AttributeSet set){
         boardPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        queenPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        queenPaint.setColor(Color.rgb(205, 50, 50));
     }
 
-    private void generateBoard(int n){
-        boardSize = n;
-        if (n > 8) {
-            return;
-        }
+    public void generateBoard(int n){
+
+        boardSize = n-1; //0 indexed
+    }
+
+    private void placeQueen(int x, int y){
+        queenPos[x] = y;
+
     }
 
     /**
@@ -103,12 +116,17 @@ public class QueensView extends View {
                     boardPaint.setColor(light);
                 }else boardPaint.setColor(dark);
 
-                int startX = OFFSETX + (x * SPACING);
-                int startY = OFFSETX + (y * SPACING);
+                int startX = BOARDOFFSETX + (x * SPACING);
+                int startY = BOARDOFFSETX + (y * SPACING);
                 int endX = startX + LENGTH;
                 int endY = startY + LENGTH;
 
                 canvas.drawRect(startX, startY, endX, endY, boardPaint);
+
+                if(queenPos[x] != -1 ){
+                    canvas.drawCircle(QUEENOFFSETX + (x*SPACING), QUEENOFFSETY + (queenPos[x]*SPACING), 40, queenPaint);
+                }
+
             }
         }
 
