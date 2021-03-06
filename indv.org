@@ -15,6 +15,10 @@ This will likely be just a copy of the code from somewhere?
 ** DFS
 This is the same as bfs just take from end lol
 
+** Queens
+
+*** TODO Explain that the number has to be between 4 and 8 inclusive. Can do more but takes a long time
+
 ** Misc
 *** TODO Refactor color names
 *** TODO Probably don't need Node.java?

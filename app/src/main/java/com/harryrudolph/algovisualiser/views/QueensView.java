@@ -31,7 +31,7 @@ public class QueensView extends View {
     Paint boardPaint;
     Paint queenPaint;
 
-    int[] queenPos = {-1, -1, 1, -1, -1, -1, -1, -1, -1};//@Hardcoded
+    int[] queenPos = {-1, -1, -1, -1, -1, -1, -1, -1};//@Hardcoded
 
     /**
      * Constructor extending from superclass
@@ -91,13 +91,13 @@ public class QueensView extends View {
     }
 
     public void generateBoard(int n){
-
         boardSize = n-1; //0 indexed
     }
 
-    private void placeQueen(int x, int y){
-        queenPos[x] = y;
-
+    public void updateBoard(int[] board){
+        queenPos = board;
+        //for (int i = 0; i < queenPos.length; i++) System.out.println(board[i]);
+        invalidate();
     }
 
     /**
