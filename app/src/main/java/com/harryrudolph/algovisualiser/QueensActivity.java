@@ -3,6 +3,7 @@ package com.harryrudolph.algovisualiser;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +14,6 @@ import com.harryrudolph.algovisualiser.views.QueensView;
 import java.util.Arrays;
 
 public class QueensActivity extends AppCompatActivity {
-
     private QueensView mQueensView;
 
     private int[] board;
@@ -45,7 +45,8 @@ public class QueensActivity extends AppCompatActivity {
         nextStepButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!ran) recursionQueen(0);
+                new BackgrounRecursionThread().execute();
+                if (false) recursionQueen(0);
                 ran = true;
 
                 if (false){
@@ -53,16 +54,32 @@ public class QueensActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    private class BackgrounRecursionThread extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            recursionQueen(0);
+            return null;
+        }
     }
 
     private boolean recursionQueen(int currentX){
-
         if (currentX == boardSize){
             return true;
         }
 
         for(int i = 0; i < boardSize; i++) {
             mQueensView.updateBoard(board);
+
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
 
             board[currentX] = i;
             if (checkValid(currentX)) {
@@ -71,6 +88,7 @@ public class QueensActivity extends AppCompatActivity {
                 }
             }
         }
+        board[currentX] = -1;
         return false;
     }
 
