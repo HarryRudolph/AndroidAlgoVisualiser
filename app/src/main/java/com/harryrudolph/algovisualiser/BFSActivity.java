@@ -55,7 +55,6 @@ public class BFSActivity extends AppCompatActivity {
         q.add(startPos);
         mGraphView.setColor(startPos, 2);
         mGraphView.setColor(endPos, 2);
-
         updateQueueInfo();
 
         Button nextStepButton = findViewById(R.id.nextStepButton);

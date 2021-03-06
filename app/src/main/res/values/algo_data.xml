@@ -14,8 +14,8 @@
 
     <string name="NQUEENSTitle">N-Queens</string>
     <string name="NQUEENSDescription">Lorem ipsum</string>
-    <string name="NQUEENSParam1">Who</string>
-    <string name="NQUEENSParam2">knows?</string>
+    <string name="NQUEENSParam1">Board Size(4-8 Inclusive)</string>
+    <string name="NQUEENSParam2">Animation Delay</string>
     <string name="NQUEENSAction">Find</string>
 
 </resources>

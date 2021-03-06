@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.harryrudolph.algovisualiser.views.QueensView;
 
@@ -15,11 +15,14 @@ import java.util.Arrays;
 
 public class QueensActivity extends AppCompatActivity {
     private QueensView mQueensView;
+    private TextView mQueensTextView;
 
     private int[] board;
-    private int boardSize;
 
-    boolean ran = false; //@hardcoded
+    private int boardSize;
+    private int animationDelay;
+
+    private boolean finished;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,40 +33,44 @@ public class QueensActivity extends AppCompatActivity {
 
         Intent recIntent = getIntent();
         boardSize = recIntent.getIntExtra("BoardSize",8);
+        animationDelay = recIntent.getIntExtra("AnimationDelay",10);
+
+        finished = false;
 
         board = new int[boardSize];
         Arrays.fill(board, -1);
 
-
-
         mQueensView = findViewById(R.id.QueensView);
         mQueensView.generateBoard(boardSize);
-        //mQueensView.placeQueen(1, 3);
 
+        mQueensTextView = findViewById(R.id.queensTextView);
+        updateText();
 
         Button nextStepButton = findViewById(R.id.nextStep);
         nextStepButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new BackgrounRecursionThread().execute();
-                if (false) recursionQueen(0);
-                ran = true;
-
-                if (false){
-                    Toast.makeText(getApplicationContext(), "Finished", Toast.LENGTH_SHORT).show();
-                }
+                new BackgroundRecursionThread().execute();
             }
         });
 
     }
 
-    private class BackgrounRecursionThread extends AsyncTask<Void, Void, Void> {
-
+    private class BackgroundRecursionThread extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
             recursionQueen(0);
             return null;
         }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            mQueensView.updateBoard(board);
+            updateText();
+            finished = true;
+        }
+
     }
 
     private boolean recursionQueen(int currentX){
@@ -73,13 +80,12 @@ public class QueensActivity extends AppCompatActivity {
 
         for(int i = 0; i < boardSize; i++) {
             mQueensView.updateBoard(board);
-
+            updateText();
             try {
-                Thread.sleep(10);
+                Thread.sleep(animationDelay);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
 
             board[currentX] = i;
             if (checkValid(currentX)) {
@@ -88,6 +94,7 @@ public class QueensActivity extends AppCompatActivity {
                 }
             }
         }
+
         board[currentX] = -1;
         return false;
     }
@@ -99,8 +106,7 @@ public class QueensActivity extends AppCompatActivity {
         for (int i = 0; i < currentX; i++){
             if (board[i] == board[currentX]){
                 //We have a match in x dimension
-                System.out.println("collision in X");
-
+                System.out.println("collision in x");
                 return false;
             }
         }
@@ -123,7 +129,6 @@ public class QueensActivity extends AppCompatActivity {
             if (board[x] == y){
                 //collision in lower left diagonal
                 System.out.println("collision in lower left");
-
                 return false;
             }
             x--;
@@ -131,5 +136,10 @@ public class QueensActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    private void updateText(){
+        mQueensTextView.setText("Queen datastructure:\n"+ Arrays.toString(board));
+    }
+
 
 }
