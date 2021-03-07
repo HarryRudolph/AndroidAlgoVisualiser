@@ -66,9 +66,9 @@ public class QueensActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            finished = true;
             mQueensView.updateBoard(board);
             updateText();
-            finished = true;
         }
 
     }
@@ -106,7 +106,6 @@ public class QueensActivity extends AppCompatActivity {
         for (int i = 0; i < currentX; i++){
             if (board[i] == board[currentX]){
                 //We have a match in x dimension
-                System.out.println("collision in x");
                 return false;
             }
         }
@@ -116,7 +115,6 @@ public class QueensActivity extends AppCompatActivity {
         while (x >= 0 && y >= 0){
             if (board[x] == y){
                 //collision in upper left diagonal
-                System.out.println("collision in upper left");
                 return false;
             }
             x--;
@@ -128,7 +126,6 @@ public class QueensActivity extends AppCompatActivity {
         while (x >= 0 && y < boardSize){
             if (board[x] == y){
                 //collision in lower left diagonal
-                System.out.println("collision in lower left");
                 return false;
             }
             x--;
@@ -138,7 +135,11 @@ public class QueensActivity extends AppCompatActivity {
     }
 
     private void updateText(){
-        mQueensTextView.setText("Queen datastructure:\n"+ Arrays.toString(board));
+        String text;
+        text = "Queen array:\n"+ Arrays.toString(board);
+
+        if (finished) text = text + "\n Finished";
+        mQueensTextView.setText(text);
     }
 
 

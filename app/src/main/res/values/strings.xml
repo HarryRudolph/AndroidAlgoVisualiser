@@ -4,4 +4,27 @@
     <string name="main_button_label_1">BFS</string>
     <string name="main_button_label_2">DFS</string>
     <string name="main_button_label_3">N-Queens</string>
+
+
+    <string name="BFSTitle">Breadth First Search</string>
+    <string name="BFSDescription">Lorem ipsum</string>
+    <string name="BFSParam1">Start Position</string>
+    <string name="BFSParam2">End Position</string>
+    <string name="BFSAction">Search</string>
+    <string name="BFSCode">code template</string>
+
+    <string name="DFSTitle">Depth First Search</string>
+    <string name="DFSDescription">Lorem ipsum</string>
+    <string name="DFSParam1">Start Position</string>
+    <string name="DFSParam2">End Position</string>
+    <string name="DFSAction">Search</string>
+    <string name="DFSCode">dfscodeTemplate</string>
+
+    <string name="NQUEENSTitle">N-Queens</string>
+    <string name="NQUEENSDescription">Lorem ipsum</string>
+    <string name="NQUEENSParam1">Board Size(4-8 Inclusive)</string>
+    <string name="NQUEENSParam2">Animation Delay</string>
+    <string name="NQUEENSAction">Find</string>
+    <string name="NQUEENSCode">queens code</string>
+
 </resources>

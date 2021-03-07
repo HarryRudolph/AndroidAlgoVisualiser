@@ -45,8 +45,17 @@ public class InfoActivity extends AppCompatActivity {
                 param2.setText("24");
                 startAlgoButton.setText(R.string.BFSAction);
 
-                Intent bfsIntent = new Intent(InfoActivity.this, BFSActivity.class);
+                Intent bfsCodeIntent = new Intent(InfoActivity.this, CodeActivity.class);
+                viewCodeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bfsCodeIntent.putExtra("type", "bfs");
+                        startActivity(bfsCodeIntent);
 
+                    }
+                });
+
+                Intent bfsIntent = new Intent(InfoActivity.this, BFSActivity.class);
                 startAlgoButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -66,10 +75,19 @@ public class InfoActivity extends AppCompatActivity {
                 param2.setHint(R.string.DFSParam2);
                 param1.setText("0");
                 param2.setText("24");
-
                 startAlgoButton.setText(R.string.DFSAction);
-                Intent dfsIntent = new Intent(InfoActivity.this, DFSActivity.class);
 
+                Intent dfsCodeIntent = new Intent(InfoActivity.this, CodeActivity.class);
+                viewCodeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dfsCodeIntent.putExtra("type", "dfs");
+                        startActivity(dfsCodeIntent);
+
+                    }
+                });
+
+                Intent dfsIntent = new Intent(InfoActivity.this, DFSActivity.class);
                 startAlgoButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -93,6 +111,18 @@ public class InfoActivity extends AppCompatActivity {
                 param1.setHint(R.string.NQUEENSParam1);
                 param2.setHint(R.string.NQUEENSParam2);
                 startAlgoButton.setText(R.string.NQUEENSAction);
+
+                Intent queenCodeIntent = new Intent(InfoActivity.this, CodeActivity.class);
+                viewCodeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        queenCodeIntent.putExtra("type", "queen");
+                        startActivity(queenCodeIntent);
+
+                    }
+                });
+
+
                 Intent queensIntent = new Intent(InfoActivity.this, QueensActivity.class);
                 startAlgoButton.setOnClickListener(new View.OnClickListener() {
                     @Override
