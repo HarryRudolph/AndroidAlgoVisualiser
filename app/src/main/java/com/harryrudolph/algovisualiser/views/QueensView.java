@@ -97,7 +97,7 @@ public class QueensView extends View {
     public void generateBoard(int n){
         boardSize = n-1; //0 indexed
         queenBoard = new int[n];
-        Arrays.fill(queenBoard, -1);
+        Arrays.fill(queenBoard, -1); //Queen is set to -1 indicating that it has not yet been placed
     }
 
     /**
@@ -137,7 +137,6 @@ public class QueensView extends View {
                 if(queenBoard[x] != -1 ){
                     canvas.drawCircle(QUEENOFFSETX + (x*SPACING), QUEENOFFSETY + (queenBoard[x]*SPACING), 40, queenPaint);
                 }
-
             }
         }
 

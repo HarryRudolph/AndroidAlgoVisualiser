@@ -14,6 +14,10 @@ import com.harryrudolph.algovisualiser.views.GraphView;
 
 import java.util.ArrayList;
 
+/**
+ * A class to represent the DFS activity. Runs depth first search algorithm and adjusts data within
+ * graph view.
+ */
 public class DFSActivity extends AppCompatActivity {
     private GraphView mGraphView;
     private int nodes = 25;
@@ -51,7 +55,7 @@ public class DFSActivity extends AppCompatActivity {
         stackDisplay.setText(stackInfo);
 
         mGraphView = findViewById(R.id.bfsGraphView);
-        mGraphView.generateEdges(g.getMatrix());
+        mGraphView.generateEdgeCoordinates(g.getMatrix());
 
         stack.add(startPos);
         mGraphView.setColor(startPos, 2);

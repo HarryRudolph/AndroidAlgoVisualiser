@@ -117,7 +117,7 @@ public class GraphView extends View {
      * To work with different formations use linear interpolation.
      * @param matrix The adjacency matrix containing values of which edges are connected.
      */
-    public void generateEdges(int[][] matrix){
+    public void generateEdgeCoordinates(int[][] matrix){
         float length = (SPACING) - (CIRCLERADIUS * 2); //The length of each line regardless of horizontal/vertical
         ArrayList<Float> edgeAL = new ArrayList<Float>(); //ArrayList to store edge startX, startY, endX, endY
 
