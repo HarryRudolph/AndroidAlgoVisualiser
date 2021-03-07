@@ -93,7 +93,7 @@ public class BFSActivity extends AppCompatActivity {
      * A method to run a breadth first search algorithm
      */
     private void BFS(){
-        if (!q.isEmpty() && !finished) {
+        if (!q.isEmpty()) {
             int current = q.get(0);
             q.remove(0);
             mGraphView.setColor(current, 1); //Set colour of node as working through.
@@ -115,7 +115,7 @@ public class BFSActivity extends AppCompatActivity {
     }
 
     /**
-     * A method to update the the queueDisplay text view. 
+     * A method to update the the queueDisplay TextView.
      */
     private void updateQueueInfo(){
         queueInfo = "Queue \n" + q.toString();
