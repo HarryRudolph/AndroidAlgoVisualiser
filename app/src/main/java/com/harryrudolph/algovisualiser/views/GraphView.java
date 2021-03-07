@@ -13,6 +13,9 @@ import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 
+/**
+ * A class to create a custom view that displays a 25 node graph.
+ */
 public class GraphView extends View {
 
     private static final int CIRCLERADIUS = 75; //The radius of each circle (node) to be drawn.
