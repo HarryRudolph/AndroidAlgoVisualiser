@@ -2,8 +2,19 @@ package com.harryrudolph.algovisualiser.algoCode;
 
 import java.util.ArrayList;
 
+/**
+ * A class containing code for each implemented algorithm. This is stored for reference purposes,
+ * it allows for the algorithm code to be clearer and not mixed in with rendering code.
+ * @author Harry Rudolph
+ */
 public class Algorithms {
-    //https://gist.github.com/HarryRudolph/77bfc56d456dbbd4f60d6d03e821b416
+
+    /**
+     * A method to run a breadth first search algorithm
+     * @param start the starting position within the graph
+     * @param end the end position to find within the graph
+     * @param g the Graph object to traverse.
+     */
     private void BFS(int start, int end, Graph g) {
         int[][] graph = g.getMatrix();
         boolean[] visited = new boolean[25]; //number of nodes
@@ -30,7 +41,12 @@ public class Algorithms {
     }
 
 
-    //https://gist.github.com/HarryRudolph/8caa0b78f6246ecc84cee756895d607c
+    /**
+     * A method to run a depth first search algorithm
+     * @param start the starting position within the graph
+     * @param end the end position to find within the graph
+     * @param g the Graph object to traverse.
+     */
         private void DFS(int start, int end, Graph g){
             int[][] graph = g.getMatrix();
             boolean[] visited = new boolean[25]; //number of nodes
@@ -56,13 +72,18 @@ public class Algorithms {
             }
         }
 
+    /**
+     * A method to run the N-Queens backtracking algorithm. This method calls itself recursively.
+     * @param currentX The current x value
+     * @param board The board to loop through
+     * @return Whether all queens are placed in a valid position
+     */
     private boolean recursionQueen(int currentX, int[] board){
         if (currentX == board.length){
             return true;
         }
 
         for(int i = 0; i < board.length; i++) {
-
             board[currentX] = i;
             if (checkValid(currentX, board)) {
                 if (recursionQueen(currentX + 1, board)) {
@@ -75,33 +96,39 @@ public class Algorithms {
         return false;
     }
 
+    /**
+     * A method to check whether a queen can be placed in a specific position.
+     * @param currentX current X coordinate of queen
+     * @param board current board (coordinates of queens)
+     * @return true if queen can be place, false if queen cannot be placed.
+     */
     private boolean checkValid(int currentX, int[] board){
-        //only have to check to left of each queen
-        //X coordinates will never be the same due to the nature of the solution. We are placing
-        //queens one column at at time
+        //It is only necessary to check to the left of each queen.
+        //x coordinates cannot be the same due to the nature of the implementation, we are placing
+        //queens one column at at time.
         for (int i = 0; i < currentX; i++){
             if (board[i] == board[currentX]){
-                //We have a match in x dimension
+                //Collision in the same y
                 return false;
             }
         }
 
-        int x = currentX -1;
-        int y = board[currentX] -1;
+        int x = currentX - 1; //-1 to start searching from one square away
+        int y = board[currentX] - 1; //-1 to start searching from one square away
         while (x >= 0 && y >= 0){
             if (board[x] == y){
-                //collision in upper left diagonal
+                //Collision in upper left diagonal
                 return false;
             }
             x--;
             y--;
         }
 
-        x = currentX -1;
-        y = board[currentX]+1;
+        x = currentX - 1; //-1 to start searching from one square away
+        y = board[currentX] + 1; //+1 to start searching from one square away
         while (x >= 0 && y < board.length){
             if (board[x] == y){
-                //collision in lower left diagonal
+                //Collision in lower left diagonal
                 return false;
             }
             x--;

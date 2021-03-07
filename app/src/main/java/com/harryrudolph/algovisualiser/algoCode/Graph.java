@@ -1,21 +1,39 @@
 package com.harryrudolph.algovisualiser.algoCode;
 
+/**
+ * A class to represent a graph of size 25
+ */
 public class Graph {
-    int matrix[][];
+    int matrix[][]; //Adjacency matrix to represent graph connections
 
+    /**
+     * Constructor to instantiate the adjacency matrix for a 5 by 5 graph.
+     */
     public Graph(){
         matrix = new int[25][25];
     }
 
+    /**
+     * A method to add an edge to an adjacency matrix
+     * @param start Node to start from
+     * @param end Node to finish at.
+     */
     public void addEdge(int start, int end){
         matrix[start][end] = 1;
         matrix[end][start] = 1;
     }
 
+    /**
+     * A method to get adjacency matrix.
+     * @return adjacency matrix
+     */
     public int[][] getMatrix(){
         return matrix;
     }
 
+    /**
+     * A method to create a dummy graph with many connections
+     */
     public void makeDummyGraph(){
         addEdge(0, 1);
         addEdge(1, 2);
@@ -41,7 +59,6 @@ public class Graph {
         addEdge(18, 23);
         addEdge(19, 24);
         addEdge(21, 22);
-
     }
 
 
