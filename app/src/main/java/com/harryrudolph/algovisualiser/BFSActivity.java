@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 /**
  * A class for the BFS activity. Runs breadth first search algorithm and adjusts data within
- * graph view.
+ * GraphView.
  */
 public class BFSActivity extends AppCompatActivity {
     private GraphView mGraphView; //Graph view from activity

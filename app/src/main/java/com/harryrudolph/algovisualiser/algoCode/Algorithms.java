@@ -8,7 +8,6 @@ import java.util.ArrayList;
  * @author Harry Rudolph
  */
 public class Algorithms {
-
     /**
      * A method to run a breadth first search algorithm
      * @param start the starting position within the graph
@@ -100,7 +99,7 @@ public class Algorithms {
      * A method to check whether a queen can be placed in a specific position.
      * @param currentX current X coordinate of queen
      * @param board current board (coordinates of queens)
-     * @return true if queen can be place, false if queen cannot be placed.
+     * @return true if queen can be placed, false if queen cannot be placed.
      */
     private boolean checkValid(int currentX, int[] board){
         //It is only necessary to check to the left of each queen.
