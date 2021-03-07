@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -45,11 +46,11 @@ public class InfoActivity extends AppCompatActivity {
                 param2.setText("24");
                 startAlgoButton.setText(R.string.BFSAction);
 
-                Intent bfsCodeIntent = new Intent(InfoActivity.this, CodeActivity.class);
+                Uri bfsURL = Uri.parse("https://gist.github.com/HarryRudolph/77bfc56d456dbbd4f60d6d03e821b416");
+                Intent bfsCodeIntent = new Intent(Intent.ACTION_VIEW, bfsURL);
                 viewCodeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        bfsCodeIntent.putExtra("type", "bfs");
                         startActivity(bfsCodeIntent);
 
                     }
@@ -77,11 +78,12 @@ public class InfoActivity extends AppCompatActivity {
                 param2.setText("24");
                 startAlgoButton.setText(R.string.DFSAction);
 
-                Intent dfsCodeIntent = new Intent(InfoActivity.this, CodeActivity.class);
+
+                Uri dfsURL = Uri.parse("https://gist.github.com/HarryRudolph/8caa0b78f6246ecc84cee756895d607c");
+                Intent dfsCodeIntent = new Intent(Intent.ACTION_VIEW, dfsURL);
                 viewCodeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dfsCodeIntent.putExtra("type", "dfs");
                         startActivity(dfsCodeIntent);
 
                     }
@@ -112,11 +114,11 @@ public class InfoActivity extends AppCompatActivity {
                 param2.setHint(R.string.NQUEENSParam2);
                 startAlgoButton.setText(R.string.NQUEENSAction);
 
-                Intent queenCodeIntent = new Intent(InfoActivity.this, CodeActivity.class);
+                Uri queenURL = Uri.parse("https://gist.github.com/HarryRudolph/544942e7ceaaba4c3c5de81ad13f4266");
+                Intent queenCodeIntent = new Intent(Intent.ACTION_VIEW, queenURL);
                 viewCodeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        queenCodeIntent.putExtra("type", "queen");
                         startActivity(queenCodeIntent);
 
                     }

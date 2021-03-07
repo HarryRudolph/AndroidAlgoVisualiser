@@ -3,6 +3,7 @@ package com.harryrudolph.algovisualiser.algoCode;
 import java.util.ArrayList;
 
 public class Algorithms {
+    //https://gist.github.com/HarryRudolph/77bfc56d456dbbd4f60d6d03e821b416
     private void BFS(int start, int end, Graph g) {
         int[][] graph = g.getMatrix();
         boolean[] visited = new boolean[25]; //number of nodes
@@ -29,6 +30,7 @@ public class Algorithms {
     }
 
 
+    //https://gist.github.com/HarryRudolph/8caa0b78f6246ecc84cee756895d607c
         private void DFS(int start, int end, Graph g){
             int[][] graph = g.getMatrix();
             boolean[] visited = new boolean[25]; //number of nodes
