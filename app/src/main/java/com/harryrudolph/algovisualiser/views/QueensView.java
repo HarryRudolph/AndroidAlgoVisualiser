@@ -13,25 +13,28 @@ import androidx.annotation.RequiresApi;
 
 import java.util.Arrays;
 
+/**
+ * A class to create a custom view that a chess board of n size. Can also render circles to
+ * represent queens.
+ */
 public class QueensView extends View {
-    private final int BOARDOFFSETX = 140; //The x offset to start drawing
-    private final int BOARDOFFSETY = 100; //The y offset to start drawing
+    private final int BOARDOFFSETX = 140; //The x offset to start drawing board
+    private final int BOARDOFFSETY = 100; //The y offset to start drawing board
 
-    private final int QUEENOFFSETX = BOARDOFFSETX + 50;
-    private final int QUEENOFFSETY = BOARDOFFSETY + 90;
+    private final int QUEENOFFSETX = BOARDOFFSETX + 50; //The x offset to start drawing queen
+    private final int QUEENOFFSETY = BOARDOFFSETY + 90; //The y offset to start drawing queen
 
-    private final int SPACING = 100;
-    private final int LENGTH = 100;
+    private final int SPACING = 100; //Spacing between board squares
+    private final int SQUARELENGTH = 100; //Length of chessboard square
 
-    private int dark = Color.rgb(184,139,74);
-    private int light = Color.rgb(227,193,111);
+    private int dark = Color.rgb(184,139,74); //Colour of dark squares
+    private int light = Color.rgb(227,193,111); //Colour of light squares.
+
+    Paint boardPaint; //Paint object for board.
+    Paint queenPaint; //Paint object for queen
 
     private int boardSize; // This is 0 indexed
-
-    Paint boardPaint;
-    Paint queenPaint;
-
-    int[] queenBoard;
+    int[] queenBoard; //Array to hold queen positions. Index is X coordinate, Value is Y coordinate.
 
     /**
      * Constructor extending from superclass
@@ -49,7 +52,6 @@ public class QueensView extends View {
      */
     public QueensView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
         init(attrs); //Calls init method with any attributes passed
     }
 
@@ -61,7 +63,6 @@ public class QueensView extends View {
      */
     public QueensView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
         init(attrs); //Calls init method with any attributes passed.
     }
 
@@ -75,7 +76,6 @@ public class QueensView extends View {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public QueensView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-
         init(attrs); //Call init with attributes
     }
 
@@ -128,8 +128,8 @@ public class QueensView extends View {
 
                 int startX = BOARDOFFSETX + (x * SPACING);
                 int startY = BOARDOFFSETX + (y * SPACING);
-                int endX = startX + LENGTH;
-                int endY = startY + LENGTH;
+                int endX = startX + SQUARELENGTH;
+                int endY = startY + SQUARELENGTH;
 
                 canvas.drawRect(startX, startY, endX, endY, boardPaint);
 
