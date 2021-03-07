@@ -1,6 +1,33 @@
 * AlgoVisualiser
 
 ** Descriptions
+BFS
+Breadth first search is an algorithm for traversing a graph.
+
+We first start at one node, and add all of the node's neighbours to a queue. In turn we then check each of the neighbours and add their neighbours to the queue. This has an effect of searching through in layers. First we are checking every node distance 1 from the start, then every node distance 2 from the start until we find the final node. We also keep track of which nodes we have visited, and don't visit nodes that we have already been to. 
+
+This algorithm contrasts with the depth first search algorithm which uses a stack.
+
+DFS
+Depth first search is an algorithm for traversing a graph.
+
+We first start at one node and add all of the node's neighbours to a stack. In turn we pop a node from the stack and add the node's neighbours to the stack. This repeats until we have found the final node, or the stack is empty (all nodes have been searched). We also keep track of which nodes we have visited, and don't visit nodes that we have already been to. 
+
+This algorithm contrasts with the breadth first search algorithm which uses a queue. 
+
+
+N-Queens Problem
+The problem is essentially to place N queens on a chessboard of size N. Such that no two queens are 'attacking' eachother by normal chess rules. There is a solution for all natural numbers apart from 2 and 3. In this implementation you can set n to equal 4-9 (you can go larger but it will take a long time).
+
+The solution is a backtracking algorithm. The program will place a queen wherever it can, then when it runs into a situation where it cannot place another queen it backtracks to an earlier point, trying a different permutation.
+This algorithm will always find a solution but can take a long time. 
+
+In the code below you can see that the 'recursionQueen()' method is called recursively. Each time the method is called, the currentX variable is increased by 1. 
+
+
+
+
+
 
 *** TODO Put values in params
 *** TODO Write Descriptions
@@ -19,14 +46,14 @@ This is the same as bfs just take from end lol
 
 *** TODO Explain that the number has to be between 4 and 8 inclusive. Can do more but takes a long time
 
-*** TODO Add some kind of 'finished'
-
 ** Misc
 *** TODO Refactor color names
 *** TODO Probably don't need Node.java?
 *** Nodes are 25. Probably pull this number from somewhere else.
 *** TODO Maybe delete nodes array from graphview.java
 *** TODO GraphView finalise the offset values.
+*** TODO Crash when trying to run on my old android phone
+
 ** Nice things to do
 
 *** TODO Add steps taken

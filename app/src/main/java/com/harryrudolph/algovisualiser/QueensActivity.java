@@ -43,6 +43,9 @@ public class QueensActivity extends AppCompatActivity {
         Intent recIntent = getIntent();
         boardSize = recIntent.getIntExtra("BoardSize",8);
         animationDelay = recIntent.getIntExtra("AnimationDelay",10);
+        if(boardSize < 1) boardSize = 1;
+        if(animationDelay < 10) animationDelay = 10;
+
 
         finished = false;
 

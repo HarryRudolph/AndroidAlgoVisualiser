@@ -49,6 +49,9 @@ public class BFSActivity extends AppCompatActivity {
         startPos = recIntent.getIntExtra("startPos", 0);
         endPos = recIntent.getIntExtra("endPos",24);
 
+        if (startPos > 24) startPos = 24;
+        if (endPos > 24) endPos = 24;
+
         //Create new Graph object and get dummy graph.
         g = new Graph();
         g.makeDummyGraph();
