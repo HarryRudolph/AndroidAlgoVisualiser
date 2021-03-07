@@ -36,7 +36,7 @@ public class InfoActivity extends AppCompatActivity {
         switch (type) {
             case "BFS":
                 setTitle(R.string.BFSTitle);
-                algoDescription.setHint(R.string.BFSDescription);
+                algoDescription.setText(R.string.BFSDescription);
 
                 paramText1.setText(R.string.BFSParam1);
                 paramText2.setText(R.string.BFSParam2);

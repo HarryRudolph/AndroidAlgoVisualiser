@@ -4,22 +4,41 @@
     <string name="main_button_label_1">Breadth First Search</string>
     <string name="main_button_label_2">Depth First Search</string>
     <string name="main_button_label_3">N-Queens</string>
+    <string name="mainSelect">Select an Algorithm</string>
 
 
     <string name="BFSTitle">Breadth First Search</string>
-    <string name="BFSDescription">Lorem ipsum</string>
+    <string name="BFSDescription">Breadth first search is an algorithm for traversing a graph.
+    The algorithm starts at one node, adding it\'s neighbours to a queue and then in turn checks each neighbour, adding it\'s neighbours to the queue. This has an effect of searching through in layers. First we are checking every node distance 1 from the start, then every node distance 2 from the start until we find the final position.
+
+    We also keep track of which nodes we have visited, otherwise the algorithm would loop forever.
+
+    The queue data structure ensures that the nodes are visited in layers. This algorithm contrasts with the depth first search algorithm. </string>
     <string name="BFSParam1">Start Position</string>
     <string name="BFSParam2">End Position</string>
     <string name="BFSAction">Search</string>
 
     <string name="DFSTitle">Depth First Search</string>
-    <string name="DFSDescription">Lorem ipsum</string>
+    <string name="DFSDescription">Depth first search is an algorithm for traversing a graph.
+The algorithm starts at one node, adding all of its neighbours to a stack. The alorithm then pops from the top of the stack, and adds all neighbours to the stack. It repeats until it has found the node, or the stack is empty (all nodes have been searched). It has an effect of drilling down to all of the dead ends in the graph. Checking one node, it\'s neighbour, it\'s neighbour etc. It then moves back up a step and looks at it\'s neighbours.
+
+We also keep track of which nodes we have visited, otherwise the algorithm would loop forever.
+
+The stack datastructure is used here in contrast with the breadth first search algorithm which uses a queue.
+</string>
     <string name="DFSParam1">Start Position</string>
     <string name="DFSParam2">End Position</string>
     <string name="DFSAction">Search</string>
 
     <string name="NQUEENSTitle">N-Queens</string>
-    <string name="NQUEENSDescription">Lorem ipsum</string>
+    <string name="NQUEENSDescription">The problem is essentially to place N queens on a chessboard of size N. Such that no two queens are \'attacking\' eachother by normal chess rules. There is a solution for all natural numbers apart from 2 and 3. In this implementation you can set n to equal 4-8.
+
+The solution is a backtracking algorithm. The program will place a queen wherever it can, then when it runs into a situation where it cannot place another queen it backtracks to an earlier point, trying a different permutation.
+This algorithm will always find a solution but can take a long time.
+
+In the code below you can see that the \'recursionQueen()\' method is called recursively. Each time the method is called, the currentX variable is increased by 1.
+
+</string>
     <string name="NQUEENSParam1">Board Size(4-8 Inclusive)</string>
     <string name="NQUEENSParam2">Animation Delay</string>
     <string name="NQUEENSAction">Find</string>

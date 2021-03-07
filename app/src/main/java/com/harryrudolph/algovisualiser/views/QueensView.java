@@ -31,7 +31,7 @@ public class QueensView extends View {
     Paint boardPaint;
     Paint queenPaint;
 
-    int[] queenPos = {-1, -1, -1, -1, -1, -1, -1, -1};//@Hardcoded
+    int[] queenPos;
 
     /**
      * Constructor extending from superclass
@@ -92,6 +92,8 @@ public class QueensView extends View {
 
     public void generateBoard(int n){
         boardSize = n-1; //0 indexed
+        queenPos = new int[n];
+        Arrays.fill(queenPos, -1);
     }
 
     public void updateBoard(int[] board){
