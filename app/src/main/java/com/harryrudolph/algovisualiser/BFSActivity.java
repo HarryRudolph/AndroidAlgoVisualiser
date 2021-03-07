@@ -15,7 +15,7 @@ import com.harryrudolph.algovisualiser.views.GraphView;
 import java.util.ArrayList;
 
 /**
- * A class to represent the BFS activity. Runs breadth first search algorithm and adjusts data within
+ * A class for the BFS activity. Runs breadth first search algorithm and adjusts data within
  * graph view.
  */
 public class BFSActivity extends AppCompatActivity {

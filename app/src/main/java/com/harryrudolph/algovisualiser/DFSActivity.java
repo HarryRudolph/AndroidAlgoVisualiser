@@ -15,7 +15,7 @@ import com.harryrudolph.algovisualiser.views.GraphView;
 import java.util.ArrayList;
 
 /**
- * A class to represent the DFS activity. Runs depth first search algorithm and adjusts data within
+ * A class for the DFS activity. Runs depth first search algorithm and adjusts data within
  * graph view.
  */
 public class DFSActivity extends AppCompatActivity {
