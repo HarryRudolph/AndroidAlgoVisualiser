@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">AlgoVisualiser</string>
     <string name="main_title">AndroidAlgoVisualiser</string>
-    <string name="main_button_label_1">BFS</string>
-    <string name="main_button_label_2">DFS</string>
+    <string name="main_button_label_1">Breadth First Search</string>
+    <string name="main_button_label_2">Depth First Search</string>
     <string name="main_button_label_3">N-Queens</string>
 
 
