@@ -31,7 +31,7 @@ public class QueensView extends View {
     Paint boardPaint;
     Paint queenPaint;
 
-    int[] queenPos;
+    int[] queenBoard;
 
     /**
      * Constructor extending from superclass
@@ -90,15 +90,22 @@ public class QueensView extends View {
         queenPaint.setColor(Color.rgb(205, 50, 50));
     }
 
+    /**
+     * A method to generate the board as it will be rendered. Fills the queenBoard array with -1.
+     * @param n size of board to be generated.
+     */
     public void generateBoard(int n){
         boardSize = n-1; //0 indexed
-        queenPos = new int[n];
-        Arrays.fill(queenPos, -1);
+        queenBoard = new int[n];
+        Arrays.fill(queenBoard, -1);
     }
 
+    /**
+     * A method to update the queenBoard. This is called from outside as the algorithm is running.
+     * @param board
+     */
     public void updateBoard(int[] board){
-        queenPos = board;
-        //for (int i = 0; i < queenPos.length; i++) System.out.println(board[i]);
+        queenBoard = board;
         invalidate();
     }
 
@@ -108,6 +115,7 @@ public class QueensView extends View {
      */
     @Override
     protected void onDraw(Canvas canvas) {
+        //Draw the chess board.
         for (int y = 0; y <= boardSize; y++){
             for (int x = 0; x <= boardSize; x++){
                 if (y % 2 == 0){
@@ -125,8 +133,9 @@ public class QueensView extends View {
 
                 canvas.drawRect(startX, startY, endX, endY, boardPaint);
 
-                if(queenPos[x] != -1 ){
-                    canvas.drawCircle(QUEENOFFSETX + (x*SPACING), QUEENOFFSETY + (queenPos[x]*SPACING), 40, queenPaint);
+                //Draw the queenBoard array
+                if(queenBoard[x] != -1 ){
+                    canvas.drawCircle(QUEENOFFSETX + (x*SPACING), QUEENOFFSETY + (queenBoard[x]*SPACING), 40, queenPaint);
                 }
 
             }
